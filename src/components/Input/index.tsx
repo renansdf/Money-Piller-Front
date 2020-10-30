@@ -1,12 +1,15 @@
-import React, { useEffect, useRef } from 'react';
+import React, { InputHTMLAttributes, useEffect, useRef } from 'react';
 import { useField } from '@unform/core';
 
-interface InputProps {
+import { StyledInput } from './styles';
+
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   type?: string;
+  placeholder?: string;
 }
 
-const Input: React.FC<InputProps> = ({ name, type, ...rest }) => {
+const Input: React.FC<InputProps> = ({ name, type, placeholder, ...rest }) => {
   const inputRef = useRef(null);
   const { fieldName, defaultValue, registerField, error } = useField(name);
 
@@ -17,7 +20,7 @@ const Input: React.FC<InputProps> = ({ name, type, ...rest }) => {
       path: 'value',
     });
   }, [fieldName, registerField]);
-  return <input type={type} ref={inputRef} defaultValue={defaultValue} {...rest} />;
+  return <StyledInput type={type} placeholder={placeholder} ref={inputRef} defaultValue={defaultValue} {...rest} />;
 }
 
 export default Input;
