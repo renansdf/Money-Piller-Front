@@ -10,46 +10,67 @@ export const Container = styled.div`
   min-height: 98vh;
   justify-content: flex-start;
 
-  h1{
-    top: 20px;
-    color: #3405A2;
-    font-weight: 900;
+  h2{
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    color: #fff;
+    font-size: 32px;
+    letter-spacing: 1px;
   }
+`;
 
+export const Header = styled.div`
+  width: 100%;
+  min-height: 10vh;
+  padding: 10px 0 10px 40px;
+  
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  h1{
+    color: #3405A2;
+  }
 `;
 
 export const FormsContainer = styled.div<IFormProps>`
-  position: fixed;
+  position: absolute;
+  top: 90px;
   bottom: 0px;
-  width: 90%;
-  max-width: 400px;
-  border-radius: 50px;
-  border-top-left-radius: 20px;
-  background-color: #FF6DFA;
+  right:0px;
+  left: 0px;
+  width: 100%;
+  background: none;
+  z-index: 10;
+  display: none;
 
-  &.left{
-    left: calc(50% - 450px);
+  &.userForm{
+    background:#3405a2;
   }
 
-  &.right{
-    left: calc(50% + 50px);
+  &.proposalForm{
+    background: #ff6dfa;
   }
 
-  &.updateValue{
-    left: 30px;
-    width: 200px;
+  &.headerForm{
+    top: 0;
+    background: #fff;
     h2{
-      font-size: 18px;
-      text-align: center;
+      color: #3405A2;
+      font-size: 20px;
+    }
+
+    form{
+      
     }
   }
   
-  transition: transform .4s;
-  transform: translateY(70%);
-
   form {
     width: 100%;
-    max-width: 100%;
+    max-width: 400px;
     color: #3405A2;
     padding: 30px 0;
 
@@ -68,10 +89,6 @@ export const FormsContainer = styled.div<IFormProps>`
       }
     }
     
-    div + div{
-      margin-top: 10px;
-    }
-
     h2{
       margin-top: 0px;
       margin-bottom: 10px;
@@ -79,6 +96,7 @@ export const FormsContainer = styled.div<IFormProps>`
     
     input{
       width: 90%;
+      max-width: 300px;
     }
 
     input + input{
@@ -89,25 +107,27 @@ export const FormsContainer = styled.div<IFormProps>`
       margin-top: 15px;
       border: none;
       border-radius: 30px;
-      background: #3405A2;
-      color: #fff;
+      background: #fff;
+      color: #3405A2;
       padding: 6px 20px;
     }
   }
 
   > button{
     position: absolute;
-    top: -10px;
-    right: -10px;
+    top: 48%;
+    right: 20px;
     border: none;
-    width: 40px;
-    height: 40px;
+    width: auto;
+    height: auto;
     border-radius: 50%;
-    background: #3405A2;
+    background: none;
     color: #fff;
     font-size: 11px;
     transition: all .4s;
     transform: rotateZ(180deg);
+
+    cursor: pointer;
 
     &:focus{
       outline: none;
@@ -115,10 +135,9 @@ export const FormsContainer = styled.div<IFormProps>`
   }
 
   ${props => props.isActive && css`
-    transform: translateY(-60px);
+    display: flex;
 
     > button{
-      background: red;
       transform: rotateZ(0deg);
     }
   `}
@@ -127,12 +146,15 @@ export const FormsContainer = styled.div<IFormProps>`
 `;
 
 export const UsersContainer = styled.div`
+  position: relative;
   flex-direction: row;
   width: 100%;
-  overflow-x: scroll;
-  flex-wrap: nowrap;
-  align-items: stretch;
+  min-height: 45vh;
+  background: #3405A2;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: flex-start;
+  padding: 90px 20px 20px;
 `;
 
 export const User = styled.div`
@@ -140,11 +162,11 @@ export const User = styled.div`
   width: 200px;
   min-width: 200px;
   padding: 20px;
-  background: #3405A2;
-  color: #fff;
+  background: #fff;
+  color: #3405A2;
   border-radius: 20px;
 
-  h2, p{
+  h3, p{
     margin: 0 0 10px 0;
     text-align: center;
   }
@@ -154,6 +176,41 @@ export const User = styled.div`
     text-align: center;
   }
 
+
+`;
+
+export const AddUser = styled.button`
+  border: 2px dashed #fff;
+  background: none;
+  color: #fff;
+  border-radius: 20px;
+  margin: 0 20px;
+  width: 200px;
+  min-width: 200px;
+  padding: 20px;
+
+  cursor: pointer;
+
+  svg{
+    margin-bottom: 10px;
+  }
+`;
+
+export const AddProposal = styled.button`
+  border: 2px dashed #fff;
+  background: none;
+  color: #fff;
+  border-radius: 20px;
+  margin: 0 20px;
+  width: 200px;
+  min-width: 200px;
+  padding: 20px;
+
+  cursor: pointer;
+
+  svg{
+    margin-bottom: 10px;
+  }
 `;
 
 export const ValueLeft = styled.div`
@@ -163,10 +220,14 @@ export const ValueLeft = styled.div`
 `;
 
 export const ProposalsContainer = styled.div`
+  position: relative;
   width: 100%;
+  min-height: 45vh;
   flex-direction: row; 
   justify-content: flex-start;
-  align-items: stretch;
+  align-items: center;
+  background: #FF6DFA;
+  padding: 90px 20px 20px;
 `;
 
 export const Proposal = styled.div`
@@ -176,7 +237,7 @@ export const Proposal = styled.div`
   margin: 10px;
   position: relative;
 
-  h2{
+  h3{
     margin: 0 0 5px;
     color:#3405A2;
   }
@@ -199,7 +260,6 @@ export const Proposal = styled.div`
     line-height: 1em;
     letter-spacing: 1px;
     padding: 3px 8px 4px;
-    box-shadow: 0px 2px 9px -4px #3405a2;
     cursor: pointer;
     transition: background .4s;
 
@@ -208,6 +268,8 @@ export const Proposal = styled.div`
     }
   }
 `;
+
+
 
 export const ValidatedContainer = styled.div`
   position: absolute;
