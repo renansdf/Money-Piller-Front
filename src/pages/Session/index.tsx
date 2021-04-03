@@ -154,12 +154,13 @@ const Session: React.FC = () => {
     <Container>
       <Header>
         <h1>sala X, valor para divisao {pileValue}</h1>
-        <button onClick={() => setIsPileUpdateActive(!isPileUpdateActive)}>mudar valor</button>
+        <button onClick={() => setIsPileUpdateActive(!isPileUpdateActive)}>atualizar valor</button>
 
         <FormsContainer className="headerForm" isActive={isPileUpdateActive}>
           <Form onSubmit={handleUpdatePileValue}>
-            <h2>atualizar valor do moneypille</h2>
+            <h2>escreva o novo valor</h2>
             <Input type="number" name="pileValue" />
+            <button type="submit">atualizar valor</button>
           </Form>
           <button onClick={() => setIsPileUpdateActive(!isPileUpdateActive)}><FiXCircle size={34} /></button>
         </FormsContainer>
@@ -170,7 +171,7 @@ const Session: React.FC = () => {
 
         <AddUser onClick={() => setIsUserFormActive(!isUserFormActive)}>
           <FiPlusCircle size={50} />
-          <p>Clique para acrescentar seus dados e participar da divisão</p>
+          <p>Clique para acrescentar/alterar seus dados e participar da divisão</p>
         </AddUser>
 
         {users && users.map(user => (
